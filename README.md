@@ -4,10 +4,11 @@
 
 ---
 <!-- .slide: data-background-image="images/schibsted-tech-polska.jpg" --><!-- https://www.facebook.com/SchibstedTechPolska/photos/a.335988559798163.82267.248170668579953/913555652041448/?type=3&theater -->
-DevOps Engineer <!-- .element class="fragment" -->  
-[Schibsted Tech Polska](http://www.schibsted.pl/) <!-- .element class="fragment" -->  
-[<i class="fa fa-github" aria-hidden="true"></i> @mstrzele](https://github.com/mstrzele) <!-- .element class="fragment" -->  
-[<i class="fa fa-twitter" aria-hidden="true"></i> @mstrzele](https://twitter.com/mstrzele) <!-- .element class="fragment" -->  
+DevOps Engineer  
+[Schibsted Tech Polska](http://www.schibsted.pl/)
+
+[<i class="fa fa-github" aria-hidden="true"></i> @mstrzele](https://github.com/mstrzele)  
+[<i class="fa fa-twitter" aria-hidden="true"></i> @mstrzele](https://twitter.com/mstrzele)
 
 ---
 <!-- .slide: data-background-image="images/mess.jpg" --><!-- https://flic.kr/p/dNPjSx -->
@@ -21,7 +22,7 @@ DevOps Engineer <!-- .element class="fragment" -->
 #### Notes
 
 * [Setting up Jenkins on Container Engine](https://cloud.google.com/solutions/jenkins-on-container-engine-tutorial)
-* [Lab: Build a Continuous Deployment Pipeline with Jenkins and Kubernetes](https://github.com/GoogleCloudPlatform/continuous-deplo    yment-on-kubernetes)
+* [Lab: Build a Continuous Deployment Pipeline with Jenkins and Kubernetes](https://github.com/GoogleCloudPlatform/continuous-deployment-on-kubernetes)
 * [Lobsters on Kubernetes](https://github.com/kelseyhightower/lobsters-on-kubernetes)
 
 ---
@@ -32,12 +33,11 @@ APT/yum/Homebrew for Kubernetes
 
 #### Notes
 
-> Use Helm to...
-> * Find and use popular software packaged as Kubernetes charts
-> * Share your own applications as Kubernetes charts
-> * Create reproducible builds of your Kubernetes applications
-> * Intelligently manage your Kubernetes manifest files
-> * Manage releases of Helm packages
+* Find and use popular software
+* Share your own applications
+* Install, update, delete, rollback
+* Create reproducible builds
+* Manage your Kubernetes manifest files
 
 ---
 <!-- .slide: data-background-image="images/archives.jpg" --><!-- https://flic.kr/p/6xQ433 -->
@@ -48,14 +48,16 @@ APT/yum/Homebrew for Kubernetes
 
 ##### Helm Classic
 
-> In November 2015, [Deis](https://deis.com/) released the first version of Helm.
-
-> Modeled on the macOS software installer [Homebrew](http://brew.sh/).
+* Deis v1, CoreOS, fleet
+* `deisctl`
+* November 2015, [Deis](https://deis.com/)
+* Deis v2, Kubernetes
+* [Homebrew](http://brew.sh/)
 
 
 ##### Deployment Manager
 
-> Deployment Manager (DM) for Kubernetes was a port of [an existing tool they used for Google Cloud Services](https://cloud.google.com/deployment-manager/).
+* [Google Cloud Deployment Manager](https://cloud.google.com/deployment-manager/).
 
 ---
 <!-- .slide: data-background-image="images/blueprints.jpg" --><!-- https://flic.kr/p/7cxaYh -->
@@ -66,69 +68,25 @@ The Tiller Server <!-- .element: class="fragment" -->
 
 #### Notes
 
-> **The Helm Client** is a command-line client for end users. The client is responsible for the following domains:
-> * Local chart development
-> * Managing repositories
-> * Interacting with the Tiller server
->   * Sending charts to be installed
->   * Asking for information about releases
->   * Requesting upgrading or uninstalling of existing releases
+##### The Helm Client
 
-> **The Tiller Server** is an in-cluster server that interacts with the Helm client, and interfaces with the Kubernetes API server. The server is responsible for the following:
-> * Listening for incoming requests from the Helm client
-> * Combining a chart and configuration to build a release
-> * Installing charts into Kubernetes, and then tracking the subsequent release
-> * Upgrading and uninstalling charts by interacting with Kubernetes
->
-> *In a nutshell, the client is responsible for managing charts, and the server is responsible for managing releases.*
+* CLI
+* Chart development
+* Managing repositories
+* Sending charts
+* Information about releases
+* Upgrading or uninstalling
 
----
-<!-- .slide: data-background-image="images/ibm-pc-xt-1983.jpg" --><!-- https://flic.kr/p/8RbMTs -->
-### Installing Helm
+> is responsible for managing charts
 
-```bash
-brew cask install helm
-```
+##### The Tiller Server
 
-```bash
-$ curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
-```
-<!-- .element: class="fragment" -->
+* `kube-system`
+* The Kubernetes API server
+* Requests from the Helm client
+* Combining a chart and configuration to build a release
 
-```bash
-$ wget http://storage.googleapis.com/kubernetes-helm/helm-v2.0.0-linux-amd64.tar.gz
-$ tar -zxvf helm-v2.0.0-linux-amd64.tgz
-$ mv linux-amd64/helm /usr/local/bin/helm
-```
-<!-- .element: class="fragment" -->
-
-- - -
-<!-- .slide: data-background-image="images/ibm-pc-xt-1983.jpg" --><!-- https://flic.kr/p/8RbMTs -->
-### Installing Tiller
-
-```bash
-$ helm init
-Creating /Users/mstrzele/.helm
-Creating /Users/mstrzele/.helm/repository
-Creating /Users/mstrzele/.helm/repository/cache
-Creating /Users/mstrzele/.helm/repository/local
-Creating /Users/mstrzele/.helm/repository/repositories.yaml
-Creating /Users/mstrzele/.helm/repository/local/index.yaml
-$HELM_HOME has been configured at $HOME/.helm.
-
-Tiller (the helm server side component) has been installed into your Kubernetes Cluster.
-Happy Helming!
-```
-
-```bash
-$ kubectl get pod --namespace kube-system
-NAME                             READY     STATUS    RESTARTS   AGE
-kube-addon-manager-minikube      1/1       Running   0          9m
-kube-dns-v20-7vkd5               3/3       Running   0          8m
-kubernetes-dashboard-guhij       1/1       Running   0          8m
-tiller-deploy-2241983194-mbv1w   1/1       Running   0          8m
-```
-<!-- .element: class="fragment" -->
+> is responsible for managing releases
 
 ---
 <!-- .slide: data-background-image="images/ship.jpg" --><!-- https://flic.kr/p/yMx2xK -->
@@ -141,13 +99,19 @@ Release <!-- .element: class="fragment" -->
 
 #### Notes
 
-> A **Chart** is a Helm package. It contains all of the resource definitions necessary to run an application, tool, or service inside of a Kubernetes cluster.
+##### Chart
 
-> Charts are created as files laid out in a particular directory tree, then they can be packaged into versioned archives to be deployed.
+* Particular directory structure
+* Can be packaged into versioned archives
 
-> A **Repository** is the place where charts can be collected and shared.
+##### Repository
 
-> A **Release** is an instance of a chart running in a Kubernetes cluster. One chart can often be installed many times into the same cluster. And each time it is installed, a new **release** is created.
+* HTTP server
+* `index.yaml`
+
+##### Release
+
+* Instance of a chart
 
 > > The resulting _release_ contains both the build and the config and is ready for immediate execution in the execution environment.
 
@@ -233,12 +197,8 @@ spec:
 
 #### Notes
 
-##### Predefined Values
-
-* `Release.Name`
-* `Release.Time`
-* `Release.Namespace`
-* `Release.Service`
+* `Values`
+* `Release.Name`, `Release.Time`, `Release.Namespace`, `Release.Service`
 * `Chart`
 * `Files`
 
@@ -327,9 +287,56 @@ metadata:
 
 #### Notes
 
-> If the resources is a `Job` kind, Tiller will wait until the job successfully runs to completion. And if the job fails, the release will fail. This is a **blocking operation**, so the Helm client will pause while the Job is run.
->
-> For all other kinds, as soon as Kubernetes marks the resource as loaded (added or updated), the resource is considered "Ready". When many resources are declared in a hook, the resources are executed serially, but the order of their execution is not guaranteed.
+* `Job`, **blocking operation**, the release will fail
+* The order ... is not guaranteed
+
+---
+<!-- .slide: data-background-image="images/ibm-pc-xt-1983.jpg" --><!-- https://flic.kr/p/8RbMTs -->
+### Installing Helm
+
+```bash
+brew cask install helm
+```
+
+```bash
+$ curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
+```
+<!-- .element: class="fragment" -->
+
+```bash
+$ wget http://storage.googleapis.com/kubernetes-helm/helm-v2.0.0-linux-amd64.tar.gz
+$ tar -zxvf helm-v2.0.0-linux-amd64.tgz
+$ mv linux-amd64/helm /usr/local/bin/helm
+```
+<!-- .element: class="fragment" -->
+
+- - -
+<!-- .slide: data-background-image="images/ibm-pc-xt-1983.jpg" --><!-- https://flic.kr/p/8RbMTs -->
+### Installing Tiller
+
+```bash
+$ helm init
+Creating /Users/mstrzele/.helm
+Creating /Users/mstrzele/.helm/repository
+Creating /Users/mstrzele/.helm/repository/cache
+Creating /Users/mstrzele/.helm/repository/local
+Creating /Users/mstrzele/.helm/repository/repositories.yaml
+Creating /Users/mstrzele/.helm/repository/local/index.yaml
+$HELM_HOME has been configured at $HOME/.helm.
+
+Tiller (the helm server side component) has been installed into your Kubernetes Cluster.
+Happy Helming!
+```
+
+```bash
+$ kubectl get pod --namespace kube-system
+NAME                             READY     STATUS    RESTARTS   AGE
+kube-addon-manager-minikube      1/1       Running   0          9m
+kube-dns-v20-7vkd5               3/3       Running   0          8m
+kubernetes-dashboard-guhij       1/1       Running   0          8m
+tiller-deploy-2241983194-mbv1w   1/1       Running   0          8m
+```
+<!-- .element: class="fragment" -->
 
 ---
 <!-- .slide: data-background-image="images/demo.jpg" --><!-- https://flic.kr/p/D323n -->
