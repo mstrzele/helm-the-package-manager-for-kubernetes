@@ -7,10 +7,10 @@
     <title>Helm, The Package Manager for Kubernetes</title>
 
     <link rel="stylesheet" href="css/reveal.css">
-    <link rel="stylesheet" href="css/theme/league.css">
+    <link rel="stylesheet" href="css/theme/white.css">
 
     <!-- Theme used for syntax highlighting of code -->
-    <link rel="stylesheet" href="lib/css/solarized-dark.css">
+    <link rel="stylesheet" href="lib/css/monokai.css">
 
     <!-- Printing and PDF exports -->
     <script>
@@ -21,16 +21,11 @@
       document.getElementsByTagName( 'head' )[0].appendChild( link );
     </script>
     <link rel="stylesheet" href="lib/css/font-awesome.css">
-    <link rel="stylesheet" type="text/css" href="lib/css/asciinema-player.css" />
     <style>
-    .reveal section img.plain { background: none; }
-    /* http://stackoverflow.com/a/32056200 */
-    .backgrounds {
-       -webkit-filter: blur(4px) saturate(90%) brightness(60%);
-       -moz-filter: blur(4px) saturate(90%) brightness(60%);
-       -o-filter: blur(4px) saturate(90%) brightness(60%);
-       -ms-filter: blur(4px) saturate(90%) brightness(60%);
-       filter: blur(4px) saturate(90%) brightness(60%);
+    .reveal section img.plain {
+      background: none;
+      border: 0;
+      box-shadow: none;
     }
     .reveal .fa {
       font-family: 'FontAwesome';
@@ -51,10 +46,120 @@
   <body>
     <div class="reveal">
       <div class="slides">
-        <section data-markdown="README.md"
-                 data-separator="^\n---\n"
-                 data-separator-vertical="^\n- - -\n"
-                 data-separator-notes="^\n#### Notes\n">
+        <section data-background-color="#000000"></section>
+        <!-- https://flic.kr/p/H7P2hf -->
+        <section data-background-image="images/lego-technic.jpg">
+          <aside class="notes">
+            <ul>
+              <li>lego technic</li>
+              <li><a href="https://www.lego.com/en-us/technic/products/24-hours-race-car-42039">24 Hours Race Car</a></li>
+              <li>SUV Racer</li>
+              <li>christmas gift</li>
+              <li>techs/libs/frameworks as lego bricks</li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <p>
+            <a href="http://www.schibsted.pl"><img data-src="images/schibsted-tech-polska.png" alt="Schibsted Tech Polska" class="plain" width="400" height="90"></a><br>
+            DevOps Engineer
+          </p>
+          <p>
+            <a href="https://github.com/mstrzele"><i class="fa fa-github" aria-hidden="true"></i> @mstrzele</a><br>
+            <a href="https://twitter.com/mstrzele"><i class="fa fa-twitter" aria-hidden="true"></i> @mstrzele</a>
+          </p>
+          <aside class="notes">
+            <ul>
+              <li>building software</li>
+              <li>solving problems</li>
+              <li>complex solutions</li>
+            </ul>
+          </aside>
+        </section>
+        <!-- https://flic.kr/p/4xFQ7N -->
+        <section data-background-color="#000000" data-background-image="images/lego-mess.jpg">
+          <h3 class="fragment">Too Many Solutions</h3>
+          <h3 class="fragment">No Manuals</h3>
+          <h3 class="fragment">They Don't Fit</h3>
+          <aside class="notes">
+            <ul>
+              <li>installing software</li>
+              <li>hard to find a proper one</li>
+              <li>Kubernetes</li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <!-- https://flic.kr/p/4hABNH -->
+          <section data-background-color="#000000" data-background-image="images/technic-bits.jpg">
+            <h1>Organized</h1>
+            <aside class="notes">
+              <ul>
+                <li>all tools in place</li>
+              </ul>
+            </aside>
+					</section>
+					<!-- https://flic.kr/p/7sSb3c -->
+					<section data-background-color="#000000" data-background-image="images/2010-lego-technic-8048-buggy-manual.jpg">
+						<h1>Instructions</h1>
+            <aside class="notes">
+              <ul>
+                <li>use others' toolboxes</li>
+              </ul>
+            </aside>
+          </section>
+        </section>
+        <section data-background-color="#277a9f">
+          <section>
+            <img data-src="images/helm.png" alt="Helm" class="plain">
+            <aside class="notes">
+              <ul>
+                <li>package manager</li>
+                <li>Kubernetes</li>
+                <li>Google</li>
+                <li>Deis</li>
+              </ul>
+            </aside>
+          </section>
+          <section data-transition-speed="slow">
+            <h1>Find</h1>
+            <h1 class="fragment">Share</h1>
+            <h1 class="fragment">Manage</h1>
+            <aside class="notes">
+              <ul>
+                <li>popular software</li>
+                <li>your own applications</li>
+                <li>Kubernetes manifest files</li>
+              </ul>
+            </aside>
+          </section>
+        </section>
+        <section>
+          <section data-background-image="images/google-kubernetes-wordpress.png" data-background-size="contain">
+            <aside class="notes">
+              <ul>
+                <li>
+                  <q>the copy-and-paste madness</q>
+                </li>
+              </ul>
+            </aside>
+          </section>
+          <section data-background-color="#277a9f">
+            <pre><code data-trim data-noescape class="bash">$ helm install stable/wordpress</code></pre>
+          </section>
+        </section>
+        <!-- https://flic.kr/p/edC3MH -->
+        <section data-background="images/curiosity-mars-rover-lego-mindstorms-edition.jpg">
+          <aside class="notes">
+            <ul>
+              <li>
+                <q>start using Helm</q>
+              </li>
+              <li>
+                <q>have more time for more creative activities</q>
+              </li>
+            </ul>
+          </aside>
         </section>
       </div>
     </div>
@@ -76,6 +181,5 @@
         ]
       });
     </script>
-    <script src="lib/js/asciinema-player.js"></script>
   </body>
 </html>

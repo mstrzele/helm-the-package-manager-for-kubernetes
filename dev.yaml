@@ -1,7 +1,0 @@
-mysqLUser: dev
-mysqlPassword: dev
-
-mysqlDatabase: dev
-
-persistence:
-  enabled: false

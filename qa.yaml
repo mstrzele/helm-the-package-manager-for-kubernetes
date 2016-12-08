@@ -1,7 +1,0 @@
-mysqLUser: qa
-mysqlPassword: fozPyctOr
-
-mysqlDatabase: qa
-
-persistence:
-  size: 2Gi
